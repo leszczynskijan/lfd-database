@@ -8,7 +8,17 @@ export async function getCurrentUser() {
   return user
 }
 
-export async function getUserProfile(userId: string) {
+export interface UserProfile {
+  id: string
+  email: string
+  full_name: string | null
+  status: 'active' | 'classified' | 'inactive'
+  level: number
+  created_at?: string
+  updated_at?: string
+}
+
+export async function getUserProfile(userId: string): Promise<UserProfile | null> {
   const client = createClient()
   const { data, error } = await client
     .from('users')
@@ -21,7 +31,7 @@ export async function getUserProfile(userId: string) {
     return null
   }
 
-  return data
+  return data as UserProfile | null
 }
 
 export async function signUp(email: string, password: string) {

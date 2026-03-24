@@ -5,6 +5,7 @@ import { Suspense } from 'react'
 import EntityCard from '@/components/EntityCard'
 import Link from 'next/link'
 import { getAccessibleEntities, searchEntities } from '@/lib/db'
+import { getCurrentUser, getUserProfile } from '@/lib/auth'
 
 interface Entity {
   id: string
@@ -29,8 +30,16 @@ function EntitiesContent() {
   useEffect(() => {
     const loadEntities = async () => {
       try {
-        // Default user level to 5 (lowest) for public viewing
-        const userLevel = 5
+        let userLevel = 5
+
+        const currentUser = await getCurrentUser()
+        if (currentUser && currentUser.id) {
+          const profile = await getUserProfile(currentUser.id)
+          if (profile) {
+            userLevel = profile.level
+          }
+        }
+
         console.log('Loading entities for user level:', userLevel)
         const data = await getAccessibleEntities(userLevel)
         console.log('Fetched entities:', data)

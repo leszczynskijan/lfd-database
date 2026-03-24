@@ -6,6 +6,7 @@ import Link from 'next/link'
 import Image from 'next/image'
 import AccessDenied from '@/components/AccessDenied'
 import { getEntityById } from '@/lib/db'
+import { getCurrentUser, getUserProfile } from '@/lib/auth'
 
 interface Entity {
   id: string
@@ -31,6 +32,18 @@ export default function EntityDetailPage() {
   useEffect(() => {
     const loadEntity = async () => {
       try {
+        const currentUser = await getCurrentUser()
+        let level = 5
+
+        if (currentUser?.id) {
+          const profile = await getUserProfile(currentUser.id)
+          if (profile?.level) {
+            level = profile.level
+          }
+        }
+
+        setUserLevel(level)
+
         const data = await getEntityById(entityId)
         if (data) {
           setEntity(data as Entity)
@@ -66,7 +79,9 @@ export default function EntityDetailPage() {
     )
   }
 
-  if (userLevel > entity.access_level && entity.access_level !== 1) {
+  // Level 1 user = highest clearance; Level 5 = lowest.
+  // Allow access if user level <= entity level (e.g. user 1 can see all, user 5 only level 5).
+  if (entity.access_level < userLevel) {
     return (
       <div className="p-8">
         <Link href="/entities" className="text-blue-400 hover:text-blue-300 mb-8 inline-block">

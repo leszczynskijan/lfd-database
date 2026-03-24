@@ -4,13 +4,15 @@ import { Database } from './database.types'
 export async function getAccessibleEntities(userLevel: number) {
   const client = createClient()
   
-  // User can view entities where access_level >= their level
-  // Level 1 = most restricted, Level 5 = public
-  // So Level 1 user can see all (1,2,3,4,5), Level 5 user can only see 5
+  // User can view entities where access_level >= their clearance level
+  // Level 1 is the highest clearance (most restricted), Level 5 is public.
+  // Example:
+  // - Level 1 user can view access levels 1,2,3,4,5
+  // - Level 5 user can view only access level 5
   const { data, error } = await client
     .from('entities')
     .select('*')
-    .lte('access_level', userLevel)
+    .gte('access_level', userLevel)
     .order('created_at', { ascending: false })
 
   if (error) {
