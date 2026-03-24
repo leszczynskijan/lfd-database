@@ -1,3 +1,4 @@
+@import url('https://fonts.googleapis.com/css2?family=Courier+Prime:wght@400;700&display=swap');
 @import "tailwindcss";
 
 * {
@@ -5,27 +6,88 @@
 }
 
 body {
-  @apply bg-slate-950 text-slate-100 font-sans;
+  @apply text-amber-50 font-mono;
+  background-color: #0a0e02;
+  font-family: 'Courier Prime', monospace;
+  letter-spacing: 0.05em;
+  /* CRT scanline effect */
+  background-image: 
+    repeating-linear-gradient(
+      0deg,
+      rgba(0, 0, 0, 0.15),
+      rgba(0, 0, 0, 0.15) 1px,
+      transparent 1px,
+      transparent 2px
+    );
 }
 
 html {
   scroll-behavior: smooth;
 }
 
-/* Custom scrollbar */
+/* Custom scrollbar - retro style */
 ::-webkit-scrollbar {
-  width: 8px;
-  height: 8px;
+  width: 12px;
+  height: 12px;
 }
 
 ::-webkit-scrollbar-track {
-  @apply bg-slate-900;
+  background-color: #1a1f0f;
+  border: 2px solid #cc3300;
 }
 
 ::-webkit-scrollbar-thumb {
-  @apply bg-slate-700 rounded;
+  background-color: #ffaa00;
+  border: 1px solid #ff6600;
 }
 
 ::-webkit-scrollbar-thumb:hover {
-  @apply bg-slate-600;
+  background-color: #ffcc00;
+}
+
+/* Retro button style */
+button, input[type="submit"], [type="button"] {
+  border: 2px outset #ffaa00 !important;
+  background: linear-gradient(135deg, #2a2a0a, #1a1a00) !important;
+  color: #00dd00 !important;
+  font-family: 'Courier Prime', monospace !important;
+  text-transform: uppercase;
+  font-weight: bold;
+  letter-spacing: 0.1em;
+  box-shadow: inset 1px 1px 0 rgba(255, 255, 255, 0.2), inset -1px -1px 0 rgba(0, 0, 0, 0.8);
+  cursor: pointer;
+  transition: all 0.1s;
+}
+
+button:active, input[type="submit"]:active {
+  border-style: inset;
+  box-shadow: inset -1px -1px 0 rgba(255, 255, 255, 0.2), inset 1px 1px 0 rgba(0, 0, 0, 0.8);
+}
+
+button:hover {
+  background: linear-gradient(135deg, #3a3a1a, #2a2a0a) !important;
+  color: #ffff00 !important;
+}
+
+/* Retro input style */
+input[type="text"],
+input[type="email"],
+input[type="password"],
+textarea,
+select {
+  border: 2px solid #ffaa00 !important;
+  background-color: #1a1f0f !important;
+  color: #00dd00 !important;
+  font-family: 'Courier Prime', monospace !important;
+  padding: 6px 8px !important;
+}
+
+input[type="text"]:focus,
+input[type="email"]:focus,
+input[type="password"]:focus,
+textarea:focus,
+select:focus {
+  border-color: #ffff00 !important;
+  outline: none;
+  box-shadow: 0 0 10px rgba(255, 170, 0, 0.5) !important;
 }

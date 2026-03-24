@@ -53,21 +53,22 @@ export default function SignUpPage() {
         </div>
 
         {/* Form */}
-        <div className="bg-slate-800 border border-slate-700 rounded-lg p-8 space-y-6">
+        <div className="bg-yellow-900 border-4 border-yellow-700 p-8 space-y-6" style={{fontFamily: "'Courier Prime', monospace"}}>
           <div>
-            <h1 className="text-3xl font-bold text-slate-100">Create Account</h1>
-            <p className="text-slate-400 mt-2">Join the Local Facility Database</p>
+            <h1 className="text-3xl font-bold text-green-300 uppercase tracking-wider">Register User</h1>
+            <p className="text-yellow-600 mt-2 uppercase text-xs tracking-widest">REQUEST NEW CLEARANCE</p>
           </div>
 
           {error && (
-            <div className="bg-red-500/20 border border-red-500 text-red-200 px-4 py-3 rounded">
-              {error}
+            <div className="bg-red-900 border-2 border-red-700 text-red-200 px-4 py-3 rounded">
+              <p className="font-bold uppercase text-xs">■ ERROR</p>
+              <p className="mt-1">{error}</p>
             </div>
           )}
 
           <form onSubmit={handleSubmit} className="space-y-4">
             <div>
-              <label htmlFor="name" className="block text-sm font-semibold text-slate-200 mb-2">
+              <label htmlFor="name" className="block text-sm font-bold text-yellow-600 uppercase tracking-widest mb-2">
                 Full Name
               </label>
               <input
@@ -75,13 +76,13 @@ export default function SignUpPage() {
                 type="text"
                 value={fullName}
                 onChange={(e) => setFullName(e.target.value)}
-                className="w-full px-4 py-2 bg-slate-700 border border-slate-600 rounded text-slate-100 placeholder-slate-500 focus:outline-none focus:border-blue-400 focus:ring-1 focus:ring-blue-400"
+                className="w-full px-4 py-2 bg-yellow-900 border-2 border-yellow-700 text-green-300 placeholder-yellow-700"
                 placeholder="Dr. Name"
               />
             </div>
 
             <div>
-              <label htmlFor="email" className="block text-sm font-semibold text-slate-200 mb-2">
+              <label htmlFor="email" className="block text-sm font-bold text-yellow-600 uppercase tracking-widest mb-2">
                 Email Address
               </label>
               <input
@@ -90,13 +91,13 @@ export default function SignUpPage() {
                 value={email}
                 onChange={(e) => setEmail(e.target.value)}
                 required
-                className="w-full px-4 py-2 bg-slate-700 border border-slate-600 rounded text-slate-100 placeholder-slate-500 focus:outline-none focus:border-blue-400 focus:ring-1 focus:ring-blue-400"
-                placeholder="you@example.com"
+                className="w-full px-4 py-2 bg-yellow-900 border-2 border-yellow-700 text-green-300 placeholder-yellow-700"
+                placeholder="user@facility.local"
               />
             </div>
 
             <div>
-              <label htmlFor="password" className="block text-sm font-semibold text-slate-200 mb-2">
+              <label htmlFor="password" className="block text-sm font-bold text-yellow-600 uppercase tracking-widest mb-2">
                 Password
               </label>
               <input
@@ -105,13 +106,13 @@ export default function SignUpPage() {
                 value={password}
                 onChange={(e) => setPassword(e.target.value)}
                 required
-                className="w-full px-4 py-2 bg-slate-700 border border-slate-600 rounded text-slate-100 placeholder-slate-500 focus:outline-none focus:border-blue-400 focus:ring-1 focus:ring-blue-400"
+                className="w-full px-4 py-2 bg-yellow-900 border-2 border-yellow-700 text-green-300 placeholder-yellow-700"
                 placeholder="••••••••"
               />
             </div>
 
             <div>
-              <label htmlFor="confirm" className="block text-sm font-semibold text-slate-200 mb-2">
+              <label htmlFor="confirm" className="block text-sm font-bold text-yellow-600 uppercase tracking-widest mb-2">
                 Confirm Password
               </label>
               <input
@@ -120,7 +121,7 @@ export default function SignUpPage() {
                 value={confirmPassword}
                 onChange={(e) => setConfirmPassword(e.target.value)}
                 required
-                className="w-full px-4 py-2 bg-slate-700 border border-slate-600 rounded text-slate-100 placeholder-slate-500 focus:outline-none focus:border-blue-400 focus:ring-1 focus:ring-blue-400"
+                className="w-full px-4 py-2 bg-yellow-900 border-2 border-yellow-700 text-green-300 placeholder-yellow-700"
                 placeholder="••••••••"
               />
             </div>
@@ -128,17 +129,17 @@ export default function SignUpPage() {
             <button
               type="submit"
               disabled={loading}
-              className="w-full px-4 py-2 bg-green-600 hover:bg-green-700 disabled:bg-slate-600 text-white font-semibold rounded transition"
+              className="w-full px-4 py-3 bg-red-700 hover:bg-red-800 disabled:bg-yellow-800 text-white font-bold rounded transition uppercase tracking-wide text-sm"
             >
-              {loading ? 'Creating Account...' : 'Sign Up'}
+              {loading ? '△ PROCESSING...' : '▶ CREATE ACCOUNT'}
             </button>
           </form>
 
           <div className="text-center">
-            <p className="text-slate-400">
-              Already have an account?{' '}
-              <Link href="/login" className="text-blue-400 hover:text-blue-300">
-                Sign in
+            <p className="text-yellow-600 text-xs uppercase tracking-widest">
+              HAVE ACCOUNT?{' '}
+              <Link href="/login" className="text-green-300 hover:text-yellow-300">
+                LOGIN
               </Link>
             </p>
           </div>

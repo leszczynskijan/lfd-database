@@ -10,51 +10,69 @@ export default function Home() {
       </div>
 
       {/* Title */}
-      <h1 className="text-6xl font-bold text-slate-100 mb-4 text-center">
+      <h1 className="text-6xl font-bold text-green-300 mb-4 text-center uppercase tracking-wide" style={{fontFamily: "'Courier Prime', monospace"}}>
         Local Facility Database
       </h1>
 
       {/* Subtitle */}
-      <p className="text-xl text-slate-400 text-center max-w-2xl mb-12">
-        A comprehensive database of anomalous entities and phenomena. Access restricted to authorized research personnel.
+      <p className="text-xl text-yellow-600 text-center max-w-2xl mb-12 uppercase tracking-widest" style={{fontFamily: "'Courier Prime', monospace"}}>
+        █ CLASSIFIED RESEARCH ARCHIVE █
+      </p>
+      <p className="text-sm text-green-400 text-center max-w-2xl mb-12" style={{fontFamily: "'Courier Prime', monospace"}}>
+        A comprehensive database of anomalous entities and phenomena.
+        <br />
+        Access restricted to authorized research personnel only.
       </p>
 
       {/* Quick Links */}
-      <div className="flex gap-6">
+      <div className="flex gap-6 mb-12">
         <Link
           href="/entities"
-          className="px-8 py-3 bg-blue-600 hover:bg-blue-700 text-white font-semibold rounded-lg transition"
+          className="px-8 py-3 bg-red-700 hover:bg-red-800 text-white font-bold rounded transition uppercase tracking-wide" style={{fontFamily: "'Courier Prime', monospace"}}
         >
-          Browse Entities
+          ▶▶ Browse Archive
         </Link>
         <Link
           href="/login"
-          className="px-8 py-3 bg-slate-700 hover:bg-slate-600 text-slate-100 font-semibold rounded-lg transition"
+          className="px-8 py-3 bg-yellow-800 hover:bg-yellow-700 text-green-300 font-bold rounded transition uppercase tracking-wide" style={{fontFamily: "'Courier Prime', monospace"}}
         >
-          Sign In
+          ▶▶ Login
         </Link>
       </div>
 
       {/* Info Cards */}
       <div className="grid md:grid-cols-3 gap-8 mt-20 max-w-4xl">
-        <div className="bg-slate-800 border border-slate-700 rounded-lg p-6">
-          <h3 className="text-lg font-bold text-amber-400 mb-2">🔍 Discover</h3>
-          <p className="text-slate-300">
+        <div className="bg-yellow-900 border-4 border-yellow-700 rounded p-6" style={{borderStyle: 'double'}}>
+          <h3 className="text-lg font-bold text-yellow-300 mb-2 uppercase tracking-widest" style={{fontFamily: "'Courier Prime', monospace"}}>■ DISCOVER</h3>
+          <p className="text-green-300" style={{fontFamily: "'Courier Prime', monospace"}}>
             Explore a vast collection of documented entities and anomalous phenomena.
           </p>
         </div>
-        <div className="bg-slate-800 border border-slate-700 rounded-lg p-6">
-          <h3 className="text-lg font-bold text-blue-400 mb-2">📚 Research</h3>
-          <p className="text-slate-300">
+        <div className="bg-yellow-900 border-4 border-yellow-700 rounded p-6" style={{borderStyle: 'double'}}>
+          <h3 className="text-lg font-bold text-yellow-300 mb-2 uppercase tracking-widest" style={{fontFamily: "'Courier Prime', monospace"}}>■ RESEARCH</h3>
+          <p className="text-green-300" style={{fontFamily: "'Courier Prime', monospace"}}>
             Access detailed research notes, containment procedures, and recovery information.
           </p>
         </div>
-        <div className="bg-slate-800 border border-slate-700 rounded-lg p-6">
-          <h3 className="text-lg font-bold text-green-400 mb-2">✍️ Contribute</h3>
-          <p className="text-slate-300">
+        <div className="bg-yellow-900 border-4 border-yellow-700 rounded p-6" style={{borderStyle: 'double'}}>
+          <h3 className="text-lg font-bold text-yellow-300 mb-2 uppercase tracking-widest" style={{fontFamily: "'Courier Prime', monospace"}}>■ CONTRIBUTE</h3>
+          <p className="text-green-300" style={{fontFamily: "'Courier Prime', monospace"}}>
             Submit your own discoveries and findings to the database as an authorized researcher.
           </p>
         </div>
+      </div>
+
+      {/* Footer */}
+      <div className="mt-20 text-center">
+        <p className="text-xs text-yellow-600 uppercase tracking-widest" style={{fontFamily: "'Courier Prime', monospace"}}>
+          ◄═══════════════════════════════►
+        </p>
+        <p className="text-xs text-green-400 mt-2" style={{fontFamily: "'Courier Prime', monospace"}}>
+          [TERMINAL v1.0.0] [SECURE CONNECTION ESTABLISHED]
+        </p>
+        <p className="text-xs text-yellow-600 mt-2 uppercase tracking-widest" style={{fontFamily: "'Courier Prime', monospace"}}>
+          ◄═══════════════════════════════►
+        </p>
       </div>
     </div>
   )
