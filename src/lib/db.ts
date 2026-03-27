@@ -72,3 +72,22 @@ export async function searchEntities(query: string, userLevel: number) {
 
   return data || []
 }
+
+export async function updateEntity(
+  id: string,
+  entity: Partial<Database['public']['Tables']['entities']['Update']>
+) {
+  const client = createClient()
+  const { data, error } = await client
+    .from('entities')
+    .update(entity)
+    .eq('id', id)
+    .select()
+
+  if (error) {
+    console.error('Error updating entity:', error)
+    return { error: error as Error }
+  }
+
+  return { data: data?.[0] }
+}

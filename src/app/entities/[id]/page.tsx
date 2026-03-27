@@ -27,7 +27,7 @@ export default function EntityDetailPage() {
   const [entity, setEntity] = useState<Entity | null>(null)
   const [loading, setLoading] = useState(true)
   const [userLevel, setUserLevel] = useState(5)
-  const [error, setError] = useState<string | null>(null)
+  const [currentUserId, setCurrentUserId] = useState<string | null>(null)
 
   useEffect(() => {
     const loadEntity = async () => {
@@ -36,6 +36,7 @@ export default function EntityDetailPage() {
         let level = 5
 
         if (currentUser?.id) {
+          setCurrentUserId(currentUser.id)
           const profile = await getUserProfile(currentUser.id)
           if (profile?.level) {
             level = profile.level
@@ -52,7 +53,6 @@ export default function EntityDetailPage() {
         }
       } catch (err) {
         console.error('Error loading entity:', err)
-        setError('Failed to load entity')
       } finally {
         setLoading(false)
       }
@@ -92,11 +92,23 @@ export default function EntityDetailPage() {
     )
   }
 
+  const canEdit = currentUserId && userLevel <= 2 && userLevel <= entity.access_level
+
   return (
     <div className="space-y-5">
-      <Link href="/entities" className="text-emerald-400 hover:text-emerald-300 text-sm font-semibold">
-        ← Back to Entity Database
-      </Link>
+      <div className="flex items-center justify-between">
+        <Link href="/entities" className="text-emerald-400 hover:text-emerald-300 text-sm font-semibold">
+          ← Back to Entity Database
+        </Link>
+        {canEdit && (
+          <Link 
+            href={`/entities/${entityId}/edit`}
+            className="px-4 py-2 bg-emerald-600 hover:bg-emerald-500 text-slate-900 font-bold rounded transition"
+          >
+            Edit Entity
+          </Link>
+        )}
+      </div>
 
       <div className="panel-border card">
         <div className="grid gap-6 lg:grid-cols-[1.2fr_1fr]">
