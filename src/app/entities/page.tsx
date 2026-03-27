@@ -2,6 +2,7 @@
 
 import { useEffect, useState } from 'react'
 import { Suspense } from 'react'
+import { useSearchParams } from 'next/navigation'
 import EntityCard from '@/components/EntityCard'
 import Link from 'next/link'
 import { getAccessibleEntities, searchEntities } from '@/lib/db'
@@ -21,10 +22,10 @@ interface Entity {
 }
 
 function EntitiesContent() {
+  const searchParams = useSearchParams()
   const [entities, setEntities] = useState<Entity[]>([])
-  const [filtered, setFiltered] = useState<Entity[]>([])
   const [loading, setLoading] = useState(true)
-  const [searchQuery, setSearchQuery] = useState('')
+  const [searchQuery, setSearchQuery] = useState(searchParams.get('search') || '')
   const [error, setError] = useState<string | null>(null)
 
   useEffect(() => {
@@ -41,7 +42,9 @@ function EntitiesContent() {
         }
 
         console.log('Loading entities for user level:', userLevel)
-        const data = await getAccessibleEntities(userLevel)
+        const data = searchQuery.trim()
+          ? await searchEntities(searchQuery.trim(), userLevel)
+          : await getAccessibleEntities(userLevel)
         console.log('Fetched entities:', data)
         setEntities(data as Entity[])
         if (!data || data.length === 0) {
@@ -57,22 +60,7 @@ function EntitiesContent() {
     }
 
     loadEntities()
-  }, [])
-
-  useEffect(() => {
-    if (searchQuery.trim()) {
-      const query = searchQuery.toLowerCase()
-      const results = entities.filter(
-        (e) =>
-          e.name.toLowerCase().includes(query) ||
-          e.category.toLowerCase().includes(query) ||
-          e.description.toLowerCase().includes(query)
-      )
-      setFiltered(results)
-    } else {
-      setFiltered(entities)
-    }
-  }, [searchQuery, entities])
+  }, [searchQuery])
 
   return (
     <div className="space-y-6">
@@ -113,14 +101,14 @@ function EntitiesContent() {
             Submit the first entity →
           </Link>
         </div>
-      ) : filtered.length === 0 ? (
+      ) : entities.length === 0 ? (
         <div className="bg-slate-800 border border-slate-700 rounded-lg p-12 text-center">
           <h3 className="text-xl font-semibold text-slate-200 mb-2">No Results</h3>
           <p className="text-slate-400">No entities match your search query.</p>
         </div>
       ) : (
         <div className="grid md:grid-cols-2 lg:grid-cols-3 gap-6">
-          {filtered.map((entity) => (
+          {entities.map((entity) => (
             <EntityCard
               key={entity.id}
               id={entity.id}
