@@ -1,61 +1,58 @@
 import Logo from '@/components/Logo'
 import Link from 'next/link'
 
+const stats = [
+  { label: 'Active Entities', value: 4 },
+  { label: 'Research Reports', value: 12 },
+  { label: 'Containment Success', value: '98%' },
+]
+
 export default function Home() {
   return (
-    <div className="flex flex-col items-center justify-center min-h-screen px-4">
-      {/* Logo */}
-      <div className="mb-12">
-        <Logo />
-      </div>
+    <section className="min-h-[calc(100vh-2rem)] overflow-hidden">
+      <header className="mb-6">
+        <div className="inline-flex items-center gap-3 px-3 py-2 bg-emerald-900/20 border border-emerald-500/40 rounded-md">
+          <Logo />
+          <div>
+            <p className="text-xs text-emerald-300 uppercase tracking-widest">SCP Command Interface</p>
+            <h1 className="text-2xl md:text-4xl font-black text-emerald-100 leading-tight">LOCAL FACILITY DATABASE</h1>
+          </div>
+        </div>
+      </header>
 
-      {/* Title */}
-      <h1 className="text-6xl font-bold text-slate-100 mb-4 text-center">
-        Local Facility Database
-      </h1>
-
-      {/* Subtitle */}
-      <p className="text-xl text-slate-400 text-center max-w-2xl mb-12">
-        A comprehensive database of anomalous entities and phenomena. Access restricted to authorized research personnel.
-      </p>
-
-      {/* Quick Links */}
-      <div className="flex gap-6">
-        <Link
-          href="/entities"
-          className="px-8 py-3 bg-blue-600 hover:bg-blue-700 text-white font-semibold rounded-lg transition"
-        >
-          Browse Entities
-        </Link>
-        <Link
-          href="/login"
-          className="px-8 py-3 bg-slate-700 hover:bg-slate-600 text-slate-100 font-semibold rounded-lg transition"
-        >
-          Sign In
-        </Link>
-      </div>
-
-      {/* Info Cards */}
-      <div className="grid md:grid-cols-3 gap-8 mt-20 max-w-4xl">
-        <div className="bg-slate-800 border border-slate-700 rounded-lg p-6">
-          <h3 className="text-lg font-bold text-amber-400 mb-2">🔍 Discover</h3>
-          <p className="text-slate-300">
-            Explore a vast collection of documented entities and anomalous phenomena.
+      <article className="grid grid-cols-1 xl:grid-cols-[1fr] gap-6">
+        <div className="card panel-border">
+          <h2 className="card-title text-xl">Welcome to the Local Facility Database</h2>
+          <p className="mt-3 text-slate-300 leading-relaxed">
+            This secure database contains research and containment information for anomalous entities that do not conform to known physical laws. Access is restricted to authorized personnel only.
           </p>
         </div>
-        <div className="bg-slate-800 border border-slate-700 rounded-lg p-6">
-          <h3 className="text-lg font-bold text-blue-400 mb-2">📚 Research</h3>
-          <p className="text-slate-300">
-            Access detailed research notes, containment procedures, and recovery information.
+
+        <div className="grid gap-4 sm:grid-cols-3">
+          {stats.map((item) => (
+            <div key={item.label} className="card border-emerald-500/50">
+              <p className="text-3xl font-bold text-emerald-200">{item.value}</p>
+              <p className="text-xs text-slate-300 uppercase tracking-wider mt-1">{item.label}</p>
+            </div>
+          ))}
+        </div>
+
+        <div className="card border-yellow-500/40 bg-[#1c1a0e]/85">
+          <h3 className="card-title">⚠️ Security Notice</h3>
+          <p className="mt-2 text-slate-300">
+            Unauthorized access to this database is strictly prohibited. All activities are monitored and logged. Violation of security protocols will result in immediate termination and potential legal action.
           </p>
         </div>
-        <div className="bg-slate-800 border border-slate-700 rounded-lg p-6">
-          <h3 className="text-lg font-bold text-green-400 mb-2">✍️ Contribute</h3>
-          <p className="text-slate-300">
-            Submit your own discoveries and findings to the database as an authorized researcher.
-          </p>
+
+        <div className="flex flex-col sm:flex-row gap-3">
+          <Link href="/entities" className="flex-1 px-5 py-3 border border-emerald-500/50 bg-emerald-500/15 text-emerald-100 font-bold uppercase tracking-widest rounded-lg hover:bg-emerald-500/25 transition text-center">
+            Browse Entity Database
+          </Link>
+          <Link href="/login" className="flex-1 px-5 py-3 border border-slate-500/40 bg-slate-800 hover:bg-slate-700 transition text-slate-200 font-semibold rounded-lg text-center">
+            Sign In
+          </Link>
         </div>
-      </div>
-    </div>
+      </article>
+    </section>
   )
 }

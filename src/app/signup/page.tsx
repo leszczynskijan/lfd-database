@@ -43,31 +43,24 @@ export default function SignUpPage() {
   }
 
   return (
-    <div className="flex items-center justify-center min-h-screen px-4">
+    <div className="flex items-center justify-center min-h-screen px-4 py-10">
       <div className="w-full max-w-md">
-        {/* Logo */}
-        <div className="flex justify-center mb-8">
-          <div className="w-20 h-20">
+        <div className="panel-border card">
+          <div className="text-center mb-5">
             <Logo />
-          </div>
-        </div>
-
-        {/* Form */}
-        <div className="bg-slate-800 border border-slate-700 rounded-lg p-8 space-y-6">
-          <div>
-            <h1 className="text-3xl font-bold text-slate-100">Create Account</h1>
-            <p className="text-slate-400 mt-2">Join the Local Facility Database</p>
+            <h1 className="text-3xl font-black text-emerald-200 mt-3">REGISTER ACCESS</h1>
+            <p className="text-slate-300 text-sm uppercase tracking-widest">Facility Personnel Only</p>
           </div>
 
           {error && (
-            <div className="bg-red-500/20 border border-red-500 text-red-200 px-4 py-3 rounded">
+            <div className="bg-red-500/20 border border-red-500 text-red-200 px-4 py-3 rounded mb-4">
               {error}
             </div>
           )}
 
           <form onSubmit={handleSubmit} className="space-y-4">
             <div>
-              <label htmlFor="name" className="block text-sm font-semibold text-slate-200 mb-2">
+              <label htmlFor="name" className="block text-[11px] font-semibold text-emerald-200 uppercase tracking-wider mb-1">
                 Full Name
               </label>
               <input
@@ -75,6 +68,73 @@ export default function SignUpPage() {
                 type="text"
                 value={fullName}
                 onChange={(e) => setFullName(e.target.value)}
+                className="w-full px-3 py-2 bg-[#0f1c2d] border border-emerald-500/20 rounded text-emerald-100 placeholder-slate-400 outline-none focus:border-emerald-400 focus:ring-emerald-400/30"
+                placeholder="Dr. Anomalus"
+              />
+            </div>
+
+            <div>
+              <label htmlFor="email" className="block text-[11px] font-semibold text-emerald-200 uppercase tracking-wider mb-1">
+                Email Address
+              </label>
+              <input
+                id="email"
+                type="email"
+                value={email}
+                onChange={(e) => setEmail(e.target.value)}
+                required
+                className="w-full px-3 py-2 bg-[#0f1c2d] border border-emerald-500/20 rounded text-emerald-100 placeholder-slate-400 outline-none focus:border-emerald-400 focus:ring-emerald-400/30"
+                placeholder="you@scp.local"
+              />
+            </div>
+
+            <div>
+              <label htmlFor="password" className="block text-[11px] font-semibold text-emerald-200 uppercase tracking-wider mb-1">
+                Password
+              </label>
+              <input
+                id="password"
+                type="password"
+                value={password}
+                onChange={(e) => setPassword(e.target.value)}
+                required
+                className="w-full px-3 py-2 bg-[#0f1c2d] border border-emerald-500/20 rounded text-emerald-100 placeholder-slate-400 outline-none focus:border-emerald-400 focus:ring-emerald-400/30"
+                placeholder="********"
+              />
+            </div>
+
+            <div>
+              <label htmlFor="confirm" className="block text-[11px] font-semibold text-emerald-200 uppercase tracking-wider mb-1">
+                Confirm Password
+              </label>
+              <input
+                id="confirm"
+                type="password"
+                value={confirmPassword}
+                onChange={(e) => setConfirmPassword(e.target.value)}
+                required
+                className="w-full px-3 py-2 bg-[#0f1c2d] border border-emerald-500/20 rounded text-emerald-100 placeholder-slate-400 outline-none focus:border-emerald-400 focus:ring-emerald-400/30"
+                placeholder="********"
+              />
+            </div>
+
+            <button
+              type="submit"
+              disabled={loading}
+              className="w-full px-3 py-2 bg-emerald-600 hover:bg-emerald-500 disabled:bg-slate-700 text-slate-900 font-bold rounded transition"
+            >
+              {loading ? 'Registering...' : 'Sign Up'}
+            </button>
+          </form>
+
+          <div className="mt-3 text-center text-xs text-slate-400">
+            Already have an account? <Link href="/login" className="text-emerald-300 hover:text-emerald-200">Sign in</Link>
+          </div>
+        </div>
+      </div>
+    </div>
+  )
+}                onChange={(e) => setFullName(e.target.value)}
                 className="w-full px-4 py-2 bg-slate-700 border border-slate-600 rounded text-slate-100 placeholder-slate-500 focus:outline-none focus:border-blue-400 focus:ring-1 focus:ring-blue-400"
                 placeholder="Dr. Name"
               />

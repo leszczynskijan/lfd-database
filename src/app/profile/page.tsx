@@ -41,17 +41,23 @@ export default function ProfilePage() {
   }, [])
 
   if (loading) {
-    return <div className="p-8">Loading profile...</div>
+    return (
+      <div className="p-8 flex items-center justify-center min-h-[75vh]">
+        <div className="card panel-border">
+          <p className="text-slate-300">Loading profile data...</p>
+        </div>
+      </div>
+    )
   }
 
   if (!user) {
     return (
-      <div className="p-8">
-        <div className="bg-slate-800 border border-slate-700 rounded-lg p-8 text-center">
-          <h2 className="text-2xl font-bold text-slate-100 mb-4">Not Authenticated</h2>
-          <p className="text-slate-400 mb-6">Please sign in to view your profile.</p>
-          <Link href="/login" className="text-blue-400 hover:text-blue-300">
-            Go to Sign In →
+      <div className="p-8 flex items-center justify-center min-h-[75vh]">
+        <div className="card panel-border text-center">
+          <h2 className="text-2xl font-bold text-emerald-200 mb-2">ACCESS REQUIRED</h2>
+          <p className="text-slate-300 mb-4">Sign in is required to view your credentials.</p>
+          <Link href="/login" className="inline-block px-4 py-2 bg-emerald-600/30 border border-emerald-500 text-emerald-100 rounded font-semibold">
+            Go to Sign In
           </Link>
         </div>
       </div>
@@ -76,15 +82,13 @@ export default function ProfilePage() {
   }
 
   return (
-    <div className="p-8 max-w-4xl">
-      {/* Header */}
-      <div className="mb-8">
-        <h1 className="text-4xl font-bold text-slate-100 mb-2">Researcher Profile</h1>
-        <p className="text-slate-400">Your facility credentials and activity</p>
+    <div className="p-6 md:p-8 max-w-4xl mx-auto">
+      <div className="mb-6">
+        <h1 className="text-3xl font-bold text-emerald-200 mb-1 tracking-widest">FACILITY ACCESS PROFILE</h1>
+        <p className="text-slate-300 text-sm uppercase">Secure facility credentials overview</p>
       </div>
 
-      {/* Profile Card */}
-      <div className="bg-slate-800 border border-slate-700 rounded-lg p-8 space-y-6">
+      <div className="panel-border card space-y-6">
         {/* Identity */}
         <div>
           <h2 className="text-2xl font-bold text-slate-100 mb-4">Identity</h2>

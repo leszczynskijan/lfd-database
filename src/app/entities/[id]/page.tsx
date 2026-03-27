@@ -93,78 +93,42 @@ export default function EntityDetailPage() {
   }
 
   return (
-    <div className="p-8 space-y-8">
-      {/* Back Link */}
-      <Link href="/entities" className="text-blue-400 hover:text-blue-300 inline-block">
-        ← Back to Entities
+    <div className="space-y-5">
+      <Link href="/entities" className="text-emerald-400 hover:text-emerald-300 text-sm font-semibold">
+        ← Back to Entity Database
       </Link>
 
-      {/* Main Content - White Document Style */}
-      <div className="bg-white rounded-lg shadow-2xl overflow-hidden">
-        {/* Image Container */}
-        <div className="relative w-full h-96 bg-slate-100">
-          {entity.image_url ? (
-            <Image
-              src={entity.image_url}
-              alt={entity.name}
-              fill
-              className="object-cover"
-            />
-          ) : (
-            <div className="w-full h-full flex items-center justify-center bg-gradient-to-br from-slate-200 to-slate-300">
-              <span className="text-slate-500 text-lg">No image available</span>
-            </div>
-          )}
+      <div className="panel-border card">
+        <div className="grid gap-6 lg:grid-cols-[1.2fr_1fr]">
+          <div className="space-y-4">
+            <h1 className="text-4xl font-bold text-emerald-200 tracking-wide">{entity.name}</h1>
+            <p className="text-sm text-slate-300 uppercase tracking-widest">{entity.category}</p>
+            <span className="inline-flex items-center gap-2 text-xs font-bold px-2 py-1 bg-[#073033] rounded border border-emerald-500/40 text-emerald-200">Level {entity.access_level}</span>
+            <p className="text-slate-300 leading-relaxed whitespace-pre-wrap">{entity.description}</p>
+          </div>
+          <div className="h-80 rounded-lg border border-emerald-500/30 overflow-hidden bg-black/20">
+            {entity.image_url ? (
+              <Image src={entity.image_url} alt={entity.name} width={1000} height={1000} className="object-contain w-full" />
+            ) : (
+              <div className="flex h-80 items-center justify-center text-slate-400">No image available</div>
+            )}
+          </div>
         </div>
 
-        {/* Content */}
-        <div className="p-12 max-w-4xl">
-          {/* Title Section */}
-          <div className="mb-8 pb-4 border-b-2 border-slate-200">
-            <div className="flex items-start justify-between mb-2">
-              <div>
-                <h1 className="text-5xl font-bold text-slate-900">{entity.name}</h1>
-                <p className="text-lg text-slate-600 mt-2">{entity.category}</p>
-              </div>
-              <div className="text-right">
-                <span className="inline-block px-4 py-1 bg-slate-100 border-2 border-slate-300 rounded font-semibold text-slate-700">
-                  Level {entity.access_level}
-                </span>
-              </div>
-            </div>
+        <div className="mt-6 grid gap-4 md:grid-cols-2">
+          <div className="rounded-lg border border-blue-500/30 bg-[#052843]/80 p-4">
+            <h2 className="text-lg font-bold text-emerald-100">Recovery Information</h2>
+            <p className="text-slate-300 text-sm whitespace-pre-wrap mt-2">{entity.recovery_info}</p>
           </div>
-
-          {/* Description */}
-          <section className="mb-12">
-            <h2 className="text-2xl font-bold text-slate-900 mb-4">Description</h2>
-            <p className="text-slate-700 leading-relaxed whitespace-pre-wrap">{entity.description}</p>
-          </section>
-
-          {/* Recovery Information */}
-          <section className="mb-12">
-            <h2 className="text-2xl font-bold text-slate-900 mb-4">Recovery Information</h2>
-            <div className="bg-blue-50 border-l-4 border-blue-500 p-6 rounded">
-              <p className="text-slate-700 leading-relaxed whitespace-pre-wrap">
-                {entity.recovery_info}
-              </p>
-            </div>
-          </section>
-
-          {/* Containment Information */}
-          <section className="mb-12">
-            <h2 className="text-2xl font-bold text-slate-900 mb-4">Containment Procedures</h2>
-            <div className="bg-red-50 border-l-4 border-red-500 p-6 rounded">
-              <p className="text-slate-700 leading-relaxed whitespace-pre-wrap">
-                {entity.containment_info}
-              </p>
-            </div>
-          </section>
-
-          {/* Metadata */}
-          <div className="pt-8 border-t border-slate-200 text-sm text-slate-500">
-            <p>Created by: {entity.created_by}</p>
-            <p>Date: {new Date(entity.created_at).toLocaleDateString()}</p>
+          <div className="rounded-lg border border-red-500/30 bg-[#3b0808]/80 p-4">
+            <h2 className="text-lg font-bold text-emerald-100">Containment Procedures</h2>
+            <p className="text-slate-300 text-sm whitespace-pre-wrap mt-2">{entity.containment_info}</p>
           </div>
+        </div>
+
+        <div className="mt-4 text-xs text-slate-500 border-t border-slate-600 pt-3">
+          <p>Created by: {entity.created_by}</p>
+          <p>Date: {new Date(entity.created_at).toLocaleDateString()}</p>
         </div>
       </div>
     </div>

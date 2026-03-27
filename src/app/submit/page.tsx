@@ -68,23 +68,23 @@ export default function SubmitEntityPage() {
   if (success) {
     return (
       <div className="p-8 flex items-center justify-center min-h-screen">
-        <div className="text-center">
-          <h1 className="text-4xl font-bold text-green-400 mb-4">Success!</h1>
-          <p className="text-slate-300 mb-8">Your entity has been submitted to the database.</p>
-          <p className="text-slate-400">Redirecting to entities list...</p>
+        <div className="text-center panel-border card">
+          <h1 className="text-4xl font-bold text-emerald-300 mb-4">✓ Submission Confirmed</h1>
+          <p className="text-slate-300 mb-5">Your entity has been submitted to the secure database.</p>
+          <p className="text-slate-400 text-sm">Redirecting to entity list in a moment...</p>
         </div>
       </div>
     )
   }
 
   return (
-    <div className="p-8 max-w-4xl mx-auto">
-      <div className="mb-8">
-        <Link href="/entities" className="text-blue-400 hover:text-blue-300 inline-block mb-6">
-          ← Back to Entities
+    <div className="p-6 md:p-10 max-w-4xl mx-auto">
+      <div className="mb-6">
+        <Link href="/entities" className="text-emerald-300 hover:text-emerald-200 inline-block mb-4 text-sm">
+          ← Back to Entity Database
         </Link>
-        <h1 className="text-4xl font-bold text-slate-100 mb-2">Submit Entity</h1>
-        <p className="text-slate-400">Submit a new entity or anomaly to the database</p>
+        <h1 className="text-3xl md:text-4xl font-bold text-emerald-200 mb-2">Submit Entity Report</h1>
+        <p className="text-sm text-slate-300">Authorized researchers can register anomalies into the secure repository.</p>
       </div>
 
       <div className="bg-slate-800 border border-slate-700 rounded-lg p-8">

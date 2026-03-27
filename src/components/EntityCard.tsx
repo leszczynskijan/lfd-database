@@ -44,37 +44,31 @@ export default function EntityCard({
 
   return (
     <Link href={`/entities/${id}`}>
-      <div className={`border-2 rounded-lg overflow-hidden hover:shadow-lg hover:scale-105 transition-all cursor-pointer h-full bg-slate-800 ${getAccessColor()}`}>
-        {/* Image Container */}
-        <div className="relative w-full h-48 bg-slate-900">
+      <div className={`h-full overflow-hidden rounded-lg border border-emerald-500/40 bg-[#0b1a28] transition hover:scale-[1.01] hover:shadow-[0_0_15px_rgba(56,189,248,0.45)] cursor-pointer`}> 
+        <div className="h-44 w-full bg-gradient-to-br from-slate-900 via-[#07121b] to-[#081626] relative">
           {imageUrl ? (
             <Image
               src={imageUrl}
               alt={name}
               fill
-              className="object-cover"
+              className="object-cover opacity-90"
             />
           ) : (
-            <div className="w-full h-full flex items-center justify-center bg-gradient-to-br from-slate-800 to-slate-900">
-              <span className="text-slate-600">No image</span>
+            <div className="flex h-full items-center justify-center text-xs text-slate-400 uppercase">
+              No image available
             </div>
           )}
         </div>
 
-        {/* Content */}
-        <div className="p-4 space-y-3">
-          <div>
-            <h3 className="text-lg font-bold text-slate-100">{name}</h3>
-            <p className="text-sm text-slate-400">{category}</p>
-          </div>
-
-          <p className="text-sm text-slate-300 line-clamp-2">{description}</p>
-
-          <div className="pt-2">
-            <span className={`inline-block text-xs font-semibold px-2 py-1 rounded border ${getAccessColor()}`}>
+        <div className="p-4 space-y-2">
+          <div className="flex items-center justify-between">
+            <h3 className="text-lg font-extrabold uppercase tracking-wider text-emerald-200">{name}</h3>
+            <span className="text-[11px] font-bold px-2 py-1 tracking-widest text-emerald-100 bg-[#042a35] rounded border border-emerald-400/30">
               {getAccessLabel()}
             </span>
           </div>
+          <p className="text-xs text-emerald-100/80 uppercase tracking-wide">{category}</p>
+          <p className="text-sm text-slate-300 line-clamp-2">{description}</p>
         </div>
       </div>
     </Link>

@@ -75,22 +75,22 @@ function EntitiesContent() {
   }, [searchQuery, entities])
 
   return (
-    <div className="p-8 space-y-8">
-      {/* Header */}
-      <div>
-        <h1 className="text-4xl font-bold text-slate-100 mb-2">Entity Database</h1>
-        <p className="text-slate-400">All documented entities and anomalies</p>
+    <div className="space-y-6">
+      <div className="card panel-border">
+        <h1 className="text-4xl font-bold text-emerald-200 mb-1">ENTITY DATABASE</h1>
+        <p className="text-slate-300 text-sm uppercase tracking-wider">All documented entities and anomalies</p>
       </div>
 
-      {/* Search */}
-      <div className="flex gap-4">
-        <input
-          type="text"
-          value={searchQuery}
-          onChange={(e) => setSearchQuery(e.target.value)}
-          placeholder="Search entities..."
-          className="flex-1 px-4 py-2 bg-slate-800 border border-slate-600 rounded text-slate-200 placeholder-slate-500 focus:outline-none focus:border-blue-400 focus:ring-1 focus:ring-blue-400"
-        />
+      <div className="flex flex-col gap-3 md:flex-row md:items-center md:justify-between">
+        <div className="flex-1">
+          <input
+            type="text"
+            value={searchQuery}
+            onChange={(e) => setSearchQuery(e.target.value)}
+            placeholder="Search entities..."
+            className="w-full px-4 py-3 bg-[#08121d] border border-emerald-500/30 text-emerald-100 rounded-lg transition outline-none focus:border-emerald-400 focus:ring focus:ring-emerald-400/30"
+          />
+        </div>
       </div>
 
       {/* Error State */}

@@ -33,36 +33,41 @@ export default function Sidebar({
   }
 
   return (
-    <div className="fixed left-0 top-0 h-screen w-64 bg-slate-900 border-r border-slate-700 flex flex-col">
+    <div className="fixed left-0 top-0 h-screen w-64 bg-[#041021] border-r border-emerald-500/30 shadow-[2px_0_20px_rgba(0,255,0,.1)] flex flex-col overflow-hidden">
+      <div className="px-5 py-4 border-b border-emerald-600/40">
+        <h2 className="text-xs font-bold text-emerald-300 tracking-widest uppercase">LOCAL FACILITY DATABASE</h2>
+        <p className="text-xs text-slate-300 mt-1">STATUS: OPERATIONAL</p>
+      </div>
       {/* Main content area */}
       <div className="flex-1 flex flex-col overflow-hidden">
         {/* Navigation */}
-        <nav className="p-6 space-y-4">
+        <nav className="p-4 space-y-3">
+          <h3 className="text-xs text-emerald-300 uppercase tracking-wider font-bold">DATABASE SECTIONS</h3>
           <Link
             href="/"
-            className="block text-slate-200 hover:text-blue-400 transition font-semibold text-lg"
+            className="block text-slate-200 hover:text-emerald-300 transition font-semibold text-sm"
           >
-            Dashboard
+            • Dashboard
           </Link>
           <Link
             href="/entities"
-            className="block text-slate-200 hover:text-amber-400 transition font-semibold text-lg"
+            className="block text-slate-200 hover:text-emerald-300 transition font-semibold text-sm"
           >
-            Entities
+            • Entity Database
           </Link>
           {isAuthenticated && (
             <>
               <Link
                 href="/submit"
-                className="block text-slate-200 hover:text-green-400 transition font-semibold text-lg"
+                className="block text-slate-200 hover:text-emerald-300 transition font-semibold text-sm"
               >
-                Submit Entity
+                • Submit Report
               </Link>
               <Link
                 href="/profile"
-                className="block text-slate-200 hover:text-purple-400 transition font-semibold text-lg"
+                className="block text-slate-200 hover:text-emerald-300 transition font-semibold text-sm"
               >
-                Profile
+                • User Profile
               </Link>
             </>
           )}
@@ -92,28 +97,24 @@ export default function Sidebar({
       </div>
 
       {/* Status Bar - Bottom Left */}
-      <div className="border-t border-slate-700 p-6 bg-slate-800">
+      <div className="border-t border-emerald-500/30 p-4 bg-[#041421]">
         {isAuthenticated ? (
           <div>
-            <p className="text-xs font-semibold text-slate-400 uppercase tracking-wider mb-2">
-              Status
-            </p>
-            <p className="text-slate-200 font-semibold">{getLevelDisplay()}</p>
+            <p className="text-[10px] font-bold text-slate-400 uppercase tracking-widest mb-1">ACCESS LEVEL</p>
+            <p className="text-sm font-bold text-emerald-300">{getLevelDisplay()}</p>
           </div>
         ) : (
-          <div className="space-y-3">
-            <p className="text-xs font-semibold text-slate-400 uppercase tracking-wider">
-              Access
-            </p>
+          <div className="space-y-2">
+            <p className="text-[10px] font-bold text-slate-400 uppercase tracking-widest">AUTHENTICATION</p>
             <Link
               href="/login"
-              className="block w-full px-3 py-2 bg-blue-600 hover:bg-blue-700 text-white font-semibold rounded transition text-center text-sm"
+              className="block w-full px-2 py-2 bg-emerald-600/30 hover:bg-emerald-600/50 text-emerald-100 font-semibold rounded transition text-center text-xs"
             >
               Sign In
             </Link>
             <Link
               href="/signup"
-              className="block w-full px-3 py-2 bg-slate-700 hover:bg-slate-600 text-slate-200 font-semibold rounded transition text-center text-sm"
+              className="block w-full px-2 py-2 bg-slate-700 hover:bg-slate-600 text-slate-100 font-semibold rounded transition text-center text-xs"
             >
               Sign Up
             </Link>

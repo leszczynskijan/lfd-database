@@ -4,12 +4,49 @@
   @apply box-border;
 }
 
+:root {
+  --spc-accent: #4ade80;
+  --spc-accent-soft: rgba(74, 222, 128, 0.16);
+}
+
 body {
-  @apply bg-slate-950 text-slate-100 font-sans;
+  font-family: var(--font-geist-mono), ui-monospace, SFMono-Regular, Menlo, Monaco, Consolas, "Liberation Mono", "Courier New", monospace;
+  background-color: #050a10;
+  color: #c2d7f0;
+  background-image:
+    radial-gradient(circle at 20% 20%, rgba(5, 120, 170, 0.15), transparent 45%),
+    repeating-linear-gradient(0deg, rgba(0, 255, 0, 0.03) 0px, rgba(0, 255, 0, 0.03) 1px, transparent 1px, transparent 22px),
+    repeating-linear-gradient(90deg, rgba(0, 255, 0, 0.03) 0px, rgba(0, 255, 0, 0.03) 1px, transparent 1px, transparent 22px);
+  background-size: 18px 18px, auto, auto;
+  letter-spacing: 0.02em;
 }
 
 html {
   scroll-behavior: smooth;
+}
+
+.card {
+  @apply border border-slate-700 rounded-lg bg-slate-900/70 shadow-[0_0_0_1px_rgba(34,197,94,0.6)] p-5;
+}
+
+.card-title {
+  color: #8ee2ff;
+  font-weight: 700;
+  text-transform: uppercase;
+  letter-spacing: 0.15em;
+}
+
+.panel-border {
+  border: 1px solid rgba(74, 222, 128, 0.35);
+  box-shadow: 0 0 0 1px rgba(74, 222, 128, 0.22);
+  background: rgba(7, 16, 28, 0.66);
+}
+
+.status-pill {
+  @apply px-2 py-1 text-xs font-bold rounded;
+  background-color: rgba(99, 102, 241, 0.2);
+  border: 1px solid rgba(99, 102, 241, 0.6);
+  color: #c5d8ff;
 }
 
 /* Custom scrollbar */
