@@ -4,6 +4,7 @@ import { useState } from 'react'
 import { useRouter } from 'next/navigation'
 import Link from 'next/link'
 import { createEntity } from '@/lib/db'
+import { getCurrentUser } from '@/lib/auth'
 
 export default function SubmitEntityPage() {
   const router = useRouter()
@@ -37,7 +38,14 @@ export default function SubmitEntityPage() {
     setLoading(true)
 
     try {
-      // Use demo user ID for testing (from seed data)
+      const currentUser = await getCurrentUser()
+
+      if (!currentUser?.id) {
+        setError('You must be logged in to submit an entity.')
+        setLoading(false)
+        return
+      }
+
       const result = await createEntity({
         name: formData.name,
         category: formData.category,
@@ -46,9 +54,9 @@ export default function SubmitEntityPage() {
         recovery_info: formData.recovery_info,
         containment_info: formData.containment_info,
         access_level: formData.access_level,
-        created_by: 'f47ac10b-58cc-4372-a567-0e02b2c3d479', // First test user ID from seed
+        created_by: currentUser.id,
       })
-      
+
       if (result.error) {
         setError(result.error.message || 'Failed to submit entity')
       } else {
